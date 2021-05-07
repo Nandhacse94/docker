@@ -1,0 +1,12 @@
+version: "3.8"
+networks: 
+    nandhabr1:
+services:
+    nandhawebapp:
+        image: nandhawebapp:v1.0
+        build: .
+        container_name: nandhawebcon1
+        networks: 
+            - nandhabr1
+        ports: 
+            - "1907:80"

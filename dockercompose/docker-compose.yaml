@@ -1,0 +1,17 @@
+version: "3.8" #compose file version
+networks: # for creating network 
+    nandhabr1: # name of my bridge it will auto matically choose subnet 
+
+volumes: # for creating volume 
+    nandhavol1: # name of volume 
+
+services: # this section is for containers 
+    nandhaapp1: # name of app 
+        image: alpine  # image name 
+        container_name: nandhacon1 # image name
+        command: ping google.com  # name of container 
+        volumes:  # mounting existing mentioned volume
+            - "nandhavol1:/simple"
+        networks: # using existing mentioned network 
+            - "nandhabr1"
+           
