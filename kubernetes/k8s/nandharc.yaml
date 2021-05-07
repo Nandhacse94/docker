@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nandharc-1 #name of rc
+  namespace: nandha-ns # namespace info where this rc to be created.
+spec:
+  replicas: 2 # no of pod we want to deploy
+  template:
+    metadata:
+      labels:
+        x1: hellonandha
+    spec:
+      containers:
+        - name: nandhacon1
+          image: nkittusa/oracleweb:may6v1.0 # container image name to pull
+          ports:
+            - containerPort: 80
+          env:
+            - name: x
+              value: app2
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nandhasvc2
+  namespace: nandha-ns
+spec:
+  ports:
+    - name: port1
+      port: 1907
+      protocol: TCP
+      targetPort: 80
+  selector:
+    x1: hellonandha
+  type: NodePort
